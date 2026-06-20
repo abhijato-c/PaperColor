@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public int MaxTime = 10;
     public float FPS = 30.0f;
     public Transform SpawnPoint;
+    public Transform FinishPoint;
     public GameObject Player;
     public GameObject GhostPrefab;
 
