@@ -20,7 +20,6 @@ public class Movement : MonoBehaviour {
     private Animator anim;
     private int input;
     private bool Jumping;
-    private bool CanJump;
     private bool Grounded;
     private bool FacingForward;
 
@@ -28,7 +27,6 @@ public class Movement : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>(); 
 
-        CanJump = true;
     }
 
     void Update() {
