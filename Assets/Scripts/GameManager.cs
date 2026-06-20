@@ -1,59 +1,65 @@
+using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public enum Color
-{
-    Red,
-    Yellow,
-    Green,
-    Blue
-}
+public enum Color { Red, Yellow, Green, Blue }
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     [field: SerializeField] public int MaxTime {get; private set;} = 30;
     [field: SerializeField] public float FPS {get; private set;} = 30.0f;
-    [field: SerializeField] public Vector3 RespawnPoint {get; private set;}
+    [field: SerializeField] public Vector3 SpawnPoint {get; private set;}
+    public GameObject Player;
 
-    public int CurrentRoundIt {get; private set;}
-    private Dictionary< Color, Vector3?[] > Positions;
+    public int CurrentFrame {get; private set;}
+    private int NFrames;
+    private Dictionary <Color, Vector3?[]> Positions;
+    private Color CurrentCol = Color.Blue;
+    private bool Updating = true;
 
-    // Singleton
     public static GameManager Instance {get; private set;}
 
-    void Start()
-    {
+    void Start() {
         Positions = new Dictionary<Color, Vector3?[]>();
-        CurrentRoundIt = 0;
-
+        CurrentFrame = 0;
         Time.fixedDeltaTime = 1.0f / FPS;
+        NFrames = (int) Math.Ceiling(MaxTime * FPS);
+        CycleColor();
+        Updating = false;
     }
 
     private void Awake() {
-        // Singleton
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-        }
+        Instance = this;
     }
 
     void FixedUpdate() {
-        foreach (var pair in Positions) {
-            if (pair.Value[CurrentRoundIt] == null) { continue; }
+        if (Updating) return;
 
-            // update pair.key position using corresponding pair.value
-            // pair.Key.transform.position = (Vector3)(pair.Value[CurrentRoundIt]);
+        // Store position
+        Positions[CurrentCol][CurrentFrame] = Player.transform.position;
+
+        // Update ghosts
+        foreach (var pair in Positions) {
+            if (pair.Key == CurrentCol) continue;
+
+            // Move ghost
         }
 
-        ++CurrentRoundIt;
+        ++CurrentFrame;
+        if (CurrentFrame >= NFrames) CycleColor();
     }
 
-    public void ResetColor(Color color, in Vector3?[] positions) {
-        Positions[color] = positions;
-        CurrentRoundIt = 0;
-    }
+    void CycleColor() {
+        Updating = true;
+        CurrentFrame = 0;
 
+        int ColIndex = (int) CurrentCol;
+        ColIndex += 1;
+        ColIndex %= 4;
+        CurrentCol = (Color) ColIndex;
+
+        Positions[CurrentCol] = new Vector3?[NFrames];
+
+        Player.transform.position = SpawnPoint;
+        Updating = false;
+    }
 }
