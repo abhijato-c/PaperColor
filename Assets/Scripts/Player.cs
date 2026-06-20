@@ -4,9 +4,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private List<Vector3> positions;
+    private bool recordPositions;
 
     void Start() {
-        positions = new List<Vector3>(); // todo: reserve space to improve insertion performance
+        positions = new List<Vector3>(); // TODO: reserve space to improve insertion performance
+        recordPositions = false;
     }
 
     void Update() {
