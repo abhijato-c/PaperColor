@@ -3212,10 +3212,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed9f9f62cc6fcd4fb6ea7d2063e8ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  <MaxTime>k__BackingField: 30
-  <FPS>k__BackingField: 30
-  <SpawnPoint>k__BackingField: {x: 0, y: 0, z: 0}
+  MaxTime: 10
+  FPS: 30
+  SpawnPoint: {x: 0, y: 0, z: 0}
   Player: {fileID: 1224400875727236556}
+  GhostPrefab: {fileID: 3403005002605738151, guid: 150f2ea9c0408f35a80776c1e3ad6d22, type: 3}
 --- !u!50 &8911130442258083064
 Rigidbody2D:
   serializedVersion: 5
