@@ -1,17 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private List<Vector3> positions;
-    private bool recordPositions;
+    private Vector3?[] positions;
+    private bool alive;
 
     void Start() {
-        positions = new List<Vector3>(1000); // TODO: reserve space to improve insertion performance
-        recordPositions = false;
+        positions = new Vector3?[GameManager.Instance.maxTime];
+        alive = true;
     }
 
-    void Update() {
-        positions.Add(gameObject.transform.position);
+    void FixedUpdate() {
+        if (alive)
+            // TODO: copy later if changing positions array
+            positions[GameManager.Instance.CurrentRoundIt] = gameObject.transform.position;
+        
+
     }
 }
