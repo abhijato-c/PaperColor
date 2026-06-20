@@ -258,37 +258,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &146250238
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 146250239}
-  m_Layer: 0
-  m_Name: Finishpoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &146250239
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146250238}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.33, y: 0.55, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &657633360
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +890,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.5, y: 4}
+  m_Size: {x: 2.15, y: 4}
   m_EdgeRadius: 0
 --- !u!66 &383904802124928852
 CompositeCollider2D:
@@ -5619,17 +5588,17 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 7
+  m_Material: {fileID: 6200000, guid: 621ac0d5e258f4500a5f45c03fe25b21, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &7490290096994487590
 Transform:
@@ -5663,8 +5632,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   MoveSpeed: 5
-  JumpForce: 8
-  FallForce: 2.5
+  JumpForce: 20
 --- !u!95 &7578352200064662290
 Animator:
   serializedVersion: 7
@@ -5764,7 +5732,7 @@ MonoBehaviour:
   MaxTime: 10
   FPS: 30
   SpawnPoint: {fileID: 1490960426}
-  FinishPoint: {fileID: 146250239}
+  FinishPoint: {fileID: 0}
   Player: {fileID: 1224400875727236556}
   GhostPrefab: {fileID: 3403005002605738151, guid: 150f2ea9c0408f35a80776c1e3ad6d22, type: 3}
 --- !u!50 &8911130442258083064
@@ -5804,7 +5772,6 @@ SceneRoots:
   - {fileID: 1470806584}
   - {fileID: 8374443556318543171}
   - {fileID: 1490960426}
-  - {fileID: 146250239}
   - {fileID: 121587538}
   - {fileID: 657633363}
   - {fileID: 1836195840}
