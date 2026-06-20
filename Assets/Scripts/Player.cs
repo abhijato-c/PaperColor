@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private bool recordPositions;
 
     void Start() {
-        positions = new List<Vector3>(); // TODO: reserve space to improve insertion performance
+        positions = new List<Vector3>(1000); // TODO: reserve space to improve insertion performance
         recordPositions = false;
     }
 
