@@ -9,13 +9,14 @@ public class Pen : MonoBehaviour
     public Color color;
 
     void Start() {
-        positions = new Vector3?[GameManager.Instance.maxTime];
+        positions = new Vector3?[(int)Math.Ceiling(GameManager.Instance.MaxTime * GameManager.Instance.FPS)];
         alive = true;
     }
 
     void FixedUpdate() {
         if (alive)
             // TODO: copy later if changing positions array
+            print(GameManager.Instance.CurrentRoundIt);
             positions[GameManager.Instance.CurrentRoundIt] = gameObject.transform.position;
         
 
