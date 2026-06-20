@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour {
     private bool InteractInput => Keyboard.current.eKey.wasPressedThisFrame;
     private bool LeftInput => Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed;
     private bool RightInput => Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed;
-    private bool UpInput => !Jumping && (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.spaceKey.isPressed || Keyboard.current.upArrowKey.wasPressedThisFrame);
+    private bool UpInput => !Jumping && (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.spaceKey.isPressed || Keyboard.current.upArrowKey.isPressed);
 
     private Rigidbody2D rb;
     private Animator anim;
