@@ -7,7 +7,7 @@ public enum Color { Red, Yellow, Green, Blue }
 public class GameManager : MonoBehaviour {
     public int MaxTime = 10;
     public float FPS = 30.0f;
-    public Vector3 SpawnPoint;
+    public Transform SpawnPoint;
     public GameObject Player;
     public GameObject GhostPrefab;
 
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
         Time.fixedDeltaTime = 1.0f / FPS;
         NFrames = (int) Math.Ceiling(MaxTime * FPS);
         Positions[CurrentCol] = new Vector3[NFrames];
-        Player.transform.position = SpawnPoint;
+        Player.transform.position = SpawnPoint.position;
         Player.GetComponent<SpriteRenderer>().color = Cols[CurrentCol];
 
         Updating = false;
@@ -86,10 +86,10 @@ public class GameManager : MonoBehaviour {
                 continue;
             }
             pair.Value.SetActive(true);
-            pair.Value.transform.position = SpawnPoint;
+            pair.Value.transform.position = SpawnPoint.position;
         }
 
-        Player.transform.position = SpawnPoint;
+        Player.transform.position = SpawnPoint.position;
         Player.GetComponent<SpriteRenderer>().color = Cols[CurrentCol];
         Updating = false;
     }
