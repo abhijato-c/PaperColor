@@ -9,6 +9,7 @@ public class MenusSelection : MonoBehaviour {
     public GameObject ExitBtn;
     public GameObject LevelMenu;
     public GameObject OptionsMenu;
+    public GameObject Highlight;
     private InputAction Arrow;
     private InputAction Confirm;
     private InputAction Esc;
@@ -86,7 +87,7 @@ public class MenusSelection : MonoBehaviour {
         else if (dir.y < 0 && LvlIndex < 5)
             LvlIndex +=5;
         
-        Debug.Log(LvlIndex);
+        Highlight.transform.position = GameObject.Find((LvlIndex+1).ToString()).transform.position;
     }
 
     void OpenPlayMenu() {
