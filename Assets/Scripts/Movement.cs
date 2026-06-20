@@ -6,24 +6,29 @@ public class Movement : MonoBehaviour {
     public LayerMask GroundLayer;
     public float MoveSpeed = 5f;
     public float JumpForce = 12f;
-    public float FallForce = 2.5f;
+    // public float FallForce = 2.5f;
+    public float upGravity;
+    public float downGravity;
 
     private IInteractable Interactable; 
     private bool InteractInput => Keyboard.current.eKey.wasPressedThisFrame;
     private bool LeftInput => Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed;
     private bool RightInput => Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed;
-    private bool UpInput => Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame;
+    private bool UpInput => !Jumping && (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.spaceKey.isPressed || Keyboard.current.upArrowKey.wasPressedThisFrame);
 
     private Rigidbody2D rb;
     private Animator anim;
     private int input;
     private bool Jumping;
+    private bool CanJump;
     private bool Grounded;
     private bool FacingForward;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>(); 
+
+        CanJump = true;
     }
 
     void Update() {
@@ -31,8 +36,8 @@ public class Movement : MonoBehaviour {
         Grounded = Physics2D.OverlapBox(GroundCheck.position, GroundCheck.localScale, 0f, GroundLayer);
 
         if (RightInput) input += 1;
-        if (LeftInput) input -= 1;
-        if (UpInput && Grounded) Jumping = true;
+        if (LeftInput) input += -1;
+        if (UpInput && Grounded) Jumping = true; 
 
         if (InteractInput && Interactable != null) {
             GameManager.Instance.AddInteraction(Interactable.Interact);
@@ -42,6 +47,7 @@ public class Movement : MonoBehaviour {
 
     void FixedUpdate() {
         rb.linearVelocity = new Vector2(input * MoveSpeed, rb.linearVelocity.y);
+
         float horizontalSpeed = Mathf.Abs(input);
         anim.SetFloat("Speed", horizontalSpeed);
 
@@ -51,7 +57,7 @@ public class Movement : MonoBehaviour {
         }
 
         if (rb.linearVelocity.y < 0)
-            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (FallForce - 1) * Time.fixedDeltaTime;
+            rb.linearVelocity += Vector2.up * -(Physics2D.gravity.y + downGravity) * Time.fixedDeltaTime;
 
         if (input > 0 && !FacingForward || input < 0 && FacingForward)
             FlipCharacter();

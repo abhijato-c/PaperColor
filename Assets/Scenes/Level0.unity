@@ -42979,8 +42979,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 6
+  m_Material: {fileID: 6200000, guid: 8247ee83a8dbf8946ac9d68e4553d371, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -42989,7 +42989,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &7490290096994487590
 Transform:
@@ -43022,9 +43022,10 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  MoveSpeed: 5
-  JumpForce: 8
-  FallForce: 2.5
+  MoveSpeed: 6
+  JumpForce: 17
+  upGravity: 0
+  downGravity: 50
 --- !u!95 &7578352200064662290
 Animator:
   serializedVersion: 7
