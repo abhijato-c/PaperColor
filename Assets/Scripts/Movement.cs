@@ -1,16 +1,22 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour {
+    public Transform GroundCheck;
+    public LayerMask GroundLayer;
+    public float MoveSpeed = 5f;
+    public float JumpForce = 12f;
+    public float FallForce = 2.5f;
+
     private bool LeftInput => Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed;
     private bool RightInput => Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed;
     private bool UpInput => Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame;
 
-    private float speed = 5f;
     private Rigidbody2D rb;
     private Animator anim;
-    private Vector2 input;
+    private int input;
+    private bool Jumping;
+    private bool Grounded;
     private bool FacingForward;
 
     void Awake() {
@@ -19,21 +25,29 @@ public class Movement : MonoBehaviour {
     }
 
     void Update() {
-        input = Vector2.zero;
+        input = 0;
+        Grounded = Physics2D.OverlapBox(GroundCheck.position, GroundCheck.localScale, 0f, GroundLayer);
 
-        if (RightInput) input.x += 1;
-        if (LeftInput) input.x -= 1;
-        if (UpInput) input.y += 1;
+        if (RightInput) input += 1;
+        if (LeftInput) input -= 1;
+        if (UpInput && Grounded) Jumping = true;
     }
 
     void FixedUpdate() {
-        rb.linearVelocity = new Vector2(input.x * speed, rb.linearVelocity.y);
-        float horizontalSpeed = Mathf.Abs(input.x);
+        rb.linearVelocity = new Vector2(input * MoveSpeed, rb.linearVelocity.y);
+        float horizontalSpeed = Mathf.Abs(input);
         anim.SetFloat("Speed", horizontalSpeed);
 
-        if (input.x > 0 && !FacingForward || input.x < 0 && FacingForward) {
-            FlipCharacter();
+        if (Jumping) {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, JumpForce);
+            Jumping = false;
         }
+
+        if (rb.linearVelocity.y < 0)
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (FallForce - 1) * Time.fixedDeltaTime;
+
+        if (input > 0 && !FacingForward || input < 0 && FacingForward)
+            FlipCharacter();
     }
 
     void FlipCharacter() {
