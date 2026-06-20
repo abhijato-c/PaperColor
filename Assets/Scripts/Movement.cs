@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour {
     private bool InteractInput => Keyboard.current.eKey.wasPressedThisFrame;
     private bool LeftInput => Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed;
     private bool RightInput => Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed;
-    private bool UpInput => !Jumping && (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.spaceKey.isPressed || Keyboard.current.upArrowKey.isPressed);
+    private bool UpInput => Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -43,12 +43,11 @@ public class Movement : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        rb.linearVelocity = new Vector2(input * MoveSpeed, rb.linearVelocity.y);
-
-        float horizontalSpeed = Mathf.Abs(input);
-        anim.SetFloat("Speed", horizontalSpeed);
+        rb.linearVelocityX = input * MoveSpeed;
+        anim.SetFloat("Speed", Mathf.Abs(input));
 
         if (Jumping) {
+            rb.linearVelocityY = 0;
             rb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
             Jumping = false;
         }
