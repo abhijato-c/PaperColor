@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public enum Color { Red, Yellow, Green, Blue }
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour {
     private Color CurrentCol = Color.Red;
     private bool Updating = true;
     private Dictionary <Color, Vector3[]> Positions;
+    private Dictionary <Color, Action[]> Interactions;
     private Dictionary <Color, GameObject> Ghosts;
     private Dictionary <Color, Color32> Cols;
 
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour {
     void Start() {
         Positions = new Dictionary<Color, Vector3[]>();
         Ghosts = new Dictionary<Color, GameObject>();
+        Interactions = new Dictionary<Color, Action[]>();
         Cols = new Dictionary<Color, Color32>();
         Cols[Color.Red] = new Color32(230, 90, 90, 255);
         Cols[Color.Yellow] = new Color32(255, 220, 0, 255);
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour {
         Time.fixedDeltaTime = 1.0f / FPS;
         NFrames = (int) Math.Ceiling(MaxTime * FPS);
         Positions[CurrentCol] = new Vector3[NFrames];
+        Interactions[CurrentCol] = new Action[NFrames];
         Player.transform.position = SpawnPoint;
         Player.GetComponent<SpriteRenderer>().color = Cols[CurrentCol];
 
@@ -54,6 +58,12 @@ public class GameManager : MonoBehaviour {
         foreach (var pair in Positions) {
             if (pair.Key == CurrentCol) continue;
             Ghosts[pair.Key].transform.position = pair.Value[CurrentFrame];
+        }
+
+        // Run interactions
+        foreach (var pair in Interactions) {
+            if (pair.Key == CurrentCol) continue;
+            if (pair.Value[CurrentFrame] != null) pair.Value[CurrentFrame]();
         }
 
         ++CurrentFrame;
@@ -78,6 +88,8 @@ public class GameManager : MonoBehaviour {
         ColIndex %= 4;
         CurrentCol = (Color) ColIndex;
         Positions[CurrentCol] = new Vector3[NFrames];
+        Interactions[CurrentCol] = new Action[NFrames];
+        ResetObjects();
 
         // Reset ghosts
         foreach (var pair in Ghosts) {
@@ -92,5 +104,18 @@ public class GameManager : MonoBehaviour {
         Player.transform.position = SpawnPoint;
         Player.GetComponent<SpriteRenderer>().color = Cols[CurrentCol];
         Updating = false;
+    }
+
+    public void AddInteraction(Action func) {
+        Interactions[CurrentCol][CurrentFrame] = func;
+    }
+
+    void ResetObjects() {
+        MonoBehaviour[] allScripts = UnityEngine.Object.FindObjectsByType<MonoBehaviour>();
+        foreach (MonoBehaviour script in allScripts) {
+            MethodInfo rst = script.GetType().GetMethod("Reset");
+            if (rst != null)
+                rst.Invoke(script, null);
+        }
     }
 }
