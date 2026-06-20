@@ -12,17 +12,22 @@ public enum Color
 
 public class GameManager : MonoBehaviour
 {
-    public int maxTime = 30; 
+    [field: SerializeField] public int MaxTime {get; private set;} = 30;
+    [field: SerializeField] public float FPS {get; private set;} = 30.0f;
+    [field: SerializeField] public Vector3 RespawnPoint {get; private set;}
+
     public int CurrentRoundIt {get; private set;}
     private Dictionary< Color, Vector3?[] > Positions;
-    public Vector3 RespawnPoint {get; private set;}
 
     // Singleton
     public static GameManager Instance {get; private set;}
 
     void Start()
     {
+        Positions = new Dictionary<Color, Vector3?[]>();
         CurrentRoundIt = 0;
+
+        Time.fixedDeltaTime = 1.0f / FPS;
     }
 
     private void Awake() {
