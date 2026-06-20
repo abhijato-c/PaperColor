@@ -1,6 +1,10 @@
 using UnityEngine;
 
 public class PressurePlate : MonoBehaviour, IInteractable {
+    public SpriteRenderer Door;
+    public BoxCollider2D DoorCollider;
+    public Sprite DoorOpen;
+    public Sprite DoorClosed;
     private bool active = false;
     void Start() {
         
@@ -8,14 +12,19 @@ public class PressurePlate : MonoBehaviour, IInteractable {
 
     public void Interact() {
         active = !active;
-        if (active)
-            Debug.Log("Plate Activated");
-        else
-            Debug.Log("Plate Deactivated");
+        if (active) {
+            Door.sprite = DoorOpen;
+            DoorCollider.enabled = false;
+        }
+        else {
+            Door.sprite = DoorClosed;
+            DoorCollider.enabled = true;
+        }
     }
 
     public void Reset() {
         active = false;
-        Debug.Log("reset");
+        Door.sprite = DoorClosed;
+        DoorCollider.enabled = true;
     }
 }

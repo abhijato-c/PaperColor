@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour {
         Time.fixedDeltaTime = 1.0f / FPS;
         NFrames = (int) Math.Ceiling(MaxTime * FPS);
         Positions[CurrentCol] = new Vector3[NFrames];
+        Interactions[CurrentCol] = new Action[NFrames];
         Player.transform.position = SpawnPoint.position;
         Player.GetComponent<SpriteRenderer>().color = Cols[CurrentCol];
 
