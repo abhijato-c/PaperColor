@@ -110,6 +110,11 @@ public class GameManager : MonoBehaviour {
             Player.GetComponent<Rigidbody2D>().sharedMaterial = GreenMat;
         else
             Player.GetComponent<Rigidbody2D>().sharedMaterial = PlayerMat;
+
+        if (CurrentCol == Color.Yellow)
+            Player.GetComponent<Rigidbody2D>().gravityScale = 5;
+        else
+            Player.GetComponent<Rigidbody2D>().gravityScale = 7;
         Updating = false;
     }
     
