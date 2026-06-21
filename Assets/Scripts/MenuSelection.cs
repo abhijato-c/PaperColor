@@ -11,21 +11,25 @@ public class MenusSelection : MonoBehaviour {
     public GameObject LevelMenu;
     public GameObject OptionsMenu;
     public GameObject Highlight;
+    public Image TutorialFrame;
     public Sprite Lock;
     public Sprite[] LevelNums;
+    public Sprite[] TutorialSlides;
     private InputAction Arrow;
     private InputAction Confirm;
     private InputAction Esc;
     private InputAction LevelNav;
+    private InputAction Tuto;
 
     private int SelIndex = 0;
     private int LvlIndex = 0;
+    private int TutorialIndex = 0;
 
     void Start() {
+        UpdateSelection();
         if (!PlayerPrefs.HasKey("Level")) {
             PlayerPrefs.SetInt("Level", 1);
         }
-        UpdateSelection();
     }
 
     void Awake() {
@@ -49,6 +53,20 @@ public class MenusSelection : MonoBehaviour {
             .With("Left", "<Keyboard>/leftArrow")
             .With("Right", "<Keyboard>/rightArrow");
         LevelNav.performed += NavLevelMenu;
+
+        Tuto = new InputAction("Tutorial");
+        Tuto.AddCompositeBinding("1DAxis").With("Positive", "<Keyboard>/rightArrow").With("Negative", "<Keyboard>/leftArrow");
+        Tuto.performed += TutorialSlide;
+        Tuto.Enable();
+    }
+
+    void TutorialSlide(InputAction.CallbackContext context) {
+        float side = context.ReadValue<float>();
+        if (side < 0 && TutorialIndex > 0)
+            TutorialIndex -= 1;
+        else if (side > 0 && TutorialIndex < 5)
+            TutorialIndex += 1;
+        TutorialFrame.sprite = TutorialSlides[TutorialIndex];
     }
 
     void ArrowPressed(InputAction.CallbackContext context) {
