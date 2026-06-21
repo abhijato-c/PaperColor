@@ -117,7 +117,12 @@ public class GameManager : MonoBehaviour {
     public void CompleteLevel(Finish finish) {
         finish.SplashColor(Cols[CurrentCol]);
 
-        string NextLvl = "lv" + (int.Parse(SceneManager.GetActiveScene().name[2..]) + 1);
+        int lv = int.Parse(SceneManager.GetActiveScene().name[2..]) + 1;
+        if (PlayerPrefs.GetInt("Level") < lv) {
+            PlayerPrefs.SetInt("Level", lv);
+        }
+        
+        string NextLvl = "lv" + lv;
         SceneManager.LoadScene(NextLvl);
     }
 
