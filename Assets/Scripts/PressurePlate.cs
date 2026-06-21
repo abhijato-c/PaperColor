@@ -2,24 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class PressurePlate : InteractableBase {
+public class PressurePlate : InteractableOverlap {
     public Sprite Relaxed;
     public Sprite Compressed;
-
-    public void Start()
-    {
-        Type = InteractableType.OverlapTrigger;
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision) {
-        Interact();
-        GameManager.Instance.AddInteraction(this.Interact);
-    }
-
-    public void OnTriggerExit2D(Collider2D collision) {
-        Reset();
-        GameManager.Instance.AddInteraction(this.Reset);
-    }
 
     public override void Interact() {
         gameObject.GetComponent<SpriteRenderer>().sprite = Compressed;

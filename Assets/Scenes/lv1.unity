@@ -16263,6 +16263,7 @@ GameObject:
   - component: {fileID: 7578352200064662289}
   - component: {fileID: 7578352200064662290}
   - component: {fileID: 7578352200064662291}
+  - component: {fileID: 7578352200064662292}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -16578,6 +16579,9 @@ MonoBehaviour:
     m_Bits: 64
   MoveSpeed: 5
   JumpForce: 20
+  PadForce: 16
+  StaplerClosed: {fileID: 0}
+  StaplerOpen: {fileID: 0}
 --- !u!95 &7578352200064662290
 Animator:
   serializedVersion: 7
@@ -16646,6 +16650,35 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.8, y: 0.9}
   m_EdgeRadius: 0
+--- !u!114 &7578352200064662292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224400875727236556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e87454e3c73ace149a6dccd9304a955a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  interactAction:
+    m_Name: Interact
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 1b7a09e1-38ea-46e7-a9ff-c55991b4148e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 803e8ead-3a3a-4c3b-9427-574127e0d798
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interact
+      m_Flags: 0
+    m_Flags: 0
 --- !u!114 &8540932538734448345
 MonoBehaviour:
   m_ObjectHideFlags: 0
