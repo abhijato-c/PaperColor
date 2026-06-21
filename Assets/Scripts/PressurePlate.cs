@@ -25,7 +25,7 @@ public class PressurePlate : MonoBehaviour {
     public void Activate() {
         renderer.sprite = Compressed;
 
-        if (target.TryGetComponent<IInteractable>(out var interactable)) interactable.Activate();
+        if (target.TryGetComponent<IObstacle>(out var interactable)) interactable.Activate();
     }
 
     public void Reset() {
@@ -38,6 +38,6 @@ public class PressurePlate : MonoBehaviour {
         }
 
         renderer.sprite = Relaxed;
-        if (target.TryGetComponent<IInteractable>(out var interactable)) interactable.Deactivate();
+        if (target.TryGetComponent<IObstacle>(out var interactable)) interactable.Deactivate();
     }
 }

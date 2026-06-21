@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class Piston : MonoBehaviour, IInteractable
+public class Piston : MonoBehaviour, IObstacle
 {
     public Sprite ExtendedSprite;
     public Sprite RetractedSprite;
