@@ -11,6 +11,9 @@ public class JumpPad : MonoBehaviour, IObstacle
 
     public void Activate()
     {
+        AudioSource source = GetComponent<AudioSource>();
+        source.time = 0.184f;
+        source.Play();
         gameObject.GetComponent<SpriteRenderer>().sprite = OpenedSprite;
     }
     public void Deactivate()
