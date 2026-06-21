@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour {
         Interactions[CurrentCol] = new Action[NFrames];
         Player.transform.position = SpawnPoint.position;
         Player.GetComponent<SpriteRenderer>().color = Cols[CurrentCol];
+        Player.GetComponent<Rigidbody2D>().gravityScale = 9;
 
         Updating = false;
     }
