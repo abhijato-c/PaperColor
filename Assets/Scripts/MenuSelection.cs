@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenusSelection : MonoBehaviour {
     public GameObject PlayBtn;
@@ -10,6 +11,8 @@ public class MenusSelection : MonoBehaviour {
     public GameObject LevelMenu;
     public GameObject OptionsMenu;
     public GameObject Highlight;
+    public Sprite Lock;
+    public Sprite[] LevelNums;
     private InputAction Arrow;
     private InputAction Confirm;
     private InputAction Esc;
@@ -19,6 +22,9 @@ public class MenusSelection : MonoBehaviour {
     private int LvlIndex = 0;
 
     void Start() {
+        if (!PlayerPrefs.HasKey("Level")) {
+            PlayerPrefs.SetInt("Level", 1);
+        }
         UpdateSelection();
     }
 
@@ -63,8 +69,9 @@ public class MenusSelection : MonoBehaviour {
             else if (SelIndex == 2)
                 Application.Quit();
         }
-        else if (LevelMenu.activeSelf){
-            SceneManager.LoadScene("lv"+LvlIndex);
+        else if (LevelMenu.activeSelf) {
+            if (LvlIndex < PlayerPrefs.GetInt("Level"))
+                SceneManager.LoadScene("lv" + LvlIndex);
         }
     }
 
@@ -94,6 +101,14 @@ public class MenusSelection : MonoBehaviour {
         LevelMenu.SetActive(true);
         LevelNav.Enable();
         Arrow.Disable();
+
+        for (int i = 1; i <= 10; ++i) {
+            GameObject LvBtn = GameObject.Find(i.ToString());
+            if (i > PlayerPrefs.GetInt("Level"))
+                LvBtn.GetComponent<Image>().sprite = Lock;
+            else
+                LvBtn.GetComponent<Image>().sprite = LevelNums[i - 1];
+        }
     }
 
     void OpenOptionsMenu() {
