@@ -3,8 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class Piston : MonoBehaviour, IObstacle
-{
+public class Piston : MonoBehaviour, IObstacle {
     public Sprite ExtendedSprite;
     public Sprite RetractedSprite;
     public bool state;
@@ -28,8 +27,8 @@ public class Piston : MonoBehaviour, IObstacle
         
     }
 
-    private void OnValidate()
-    {
-        if (state) Activate(); else Deactivate();
+    private void OnValidate() {
+        if (state) Activate(); 
+        else Deactivate();
     }
 }
