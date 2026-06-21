@@ -6,10 +6,10 @@ public class PressurePlate : MonoBehaviour{
     public Door door;
     public Sprite Relaxed;
     public Sprite Compressed;
-    private SpriteRenderer sr;
+    private SpriteRenderer renderer;
 
     void Start() {
-        sr = gameObject.GetComponent<SpriteRenderer>();
+        renderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
@@ -23,7 +23,7 @@ public class PressurePlate : MonoBehaviour{
     }
 
     public void Activate() {
-        sr.sprite = Compressed;
+        renderer.sprite = Compressed;
         door.Open();
     }
 
@@ -36,7 +36,7 @@ public class PressurePlate : MonoBehaviour{
             if (collider.gameObject.CompareTag("Player")) return;
         }
 
-        sr.sprite = Relaxed;
+        renderer.sprite = Relaxed;
         door.Close();
     }
 }
