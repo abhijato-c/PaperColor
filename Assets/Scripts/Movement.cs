@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour {
     public float JumpForce = 12f;
 
     private IInteractable Interactable; 
-    private bool InteractInput => Keyboard.current.eKey.wasPressedThisFrame;
+    // private bool InteractInput => Keyboard.current.eKey.wasPressedThisFrame;
     private bool LeftInput => Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed;
     private bool RightInput => Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed;
     private bool UpInput => Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame;
@@ -36,10 +36,10 @@ public class Movement : MonoBehaviour {
         if (LeftInput) input += -1;
         if (UpInput && Grounded) Jumping = true; 
 
-        if (InteractInput && Interactable != null) {
-            GameManager.Instance.AddInteraction(Interactable.Interact);
-            Interactable.Interact();
-        }
+        // if (InteractInput && Interactable != null) {
+        //     GameManager.Instance.AddInteraction(Interactable.Interact);
+        //     Interactable.Interact();
+        // }
     }
 
     void FixedUpdate() {

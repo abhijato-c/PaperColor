@@ -115,8 +115,9 @@ public class GameManager : MonoBehaviour {
         MonoBehaviour[] allScripts = UnityEngine.Object.FindObjectsByType<MonoBehaviour>();
         foreach (MonoBehaviour script in allScripts) {
             MethodInfo rst = script.GetType().GetMethod("Reset");
-            if (rst != null)
+            if (rst != null) {
                 rst.Invoke(script, null);
+            }
         }
     }
 }
