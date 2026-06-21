@@ -10,9 +10,10 @@ public class GameManager : MonoBehaviour {
     public int MaxTime = 10;
     public float FPS = 30.0f;
     public Transform SpawnPoint;
-    public Transform FinishPoint;
     public GameObject Player;
     public GameObject GhostPrefab;
+    public PhysicsMaterial2D PlayerMat;
+    public PhysicsMaterial2D GreenMat;
 
     private int CurrentFrame;
     private int NFrames;
@@ -105,6 +106,10 @@ public class GameManager : MonoBehaviour {
 
         Player.transform.position = SpawnPoint.position;
         Player.GetComponent<SpriteRenderer>().color = Cols[CurrentCol];
+        if (CurrentCol == Color.Green)
+            Player.GetComponent<Rigidbody2D>().sharedMaterial = GreenMat;
+        else
+            Player.GetComponent<Rigidbody2D>().sharedMaterial = PlayerMat;
         Updating = false;
     }
     /** Called from Finish */
