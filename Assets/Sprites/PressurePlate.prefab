@@ -111,10 +111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PressurePlate
   target: {fileID: 0}
+  interactAudio: {fileID: 9108300863686720574}
+  resetAudio: {fileID: -6290267316481303334}
   Relaxed: {fileID: 21300000, guid: 622e15a4fcfb465f4b1d77ec25b5c36b, type: 3}
   Compressed: {fileID: 21300000, guid: 94987910d7639367f802a2a6840e137f, type: 3}
-  pressedAudio: {fileID: 9108300863686720574}
-  releasedAudio: {fileID: -6290267316481303334}
 --- !u!61 &6478274913471970596
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: e6f2606d6565dd1b9a0c42bf9e6224a6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 2
   Loop: 0
@@ -343,7 +343,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: e6f2606d6565dd1b9a0c42bf9e6224a6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: -2
   Loop: 0

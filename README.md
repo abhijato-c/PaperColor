@@ -2,7 +2,7 @@
 
 Cards Given:
 
-Spectrum, Motion, Do-Over, Cycle, Crisoy
+Spectrum, Motion, Do-Over, Cycle, Crispy
 
 ## Description
  
@@ -18,3 +18,7 @@ Along with respawning, ghosts (NPCs) will do the actions that they previously di
 Play the game for "Crispy" sound effects.
 
 ## Image
+
+Main Page
+
+<img width="762" height="426" alt="image" src="https://github.com/user-attachments/assets/8d39ca87-55a3-480b-ac83-b1cc502c2adb" />
