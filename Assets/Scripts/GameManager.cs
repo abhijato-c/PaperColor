@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour {
         MonoBehaviour[] allScripts = UnityEngine.Object.FindObjectsByType<MonoBehaviour>();
         foreach (MonoBehaviour script in allScripts) {
 
-            if (script != null && script is InteractableBase interactable)
+            if (script != null && script is InteractableOverlap interactable)
             {
                 interactable.Reset();
             }
