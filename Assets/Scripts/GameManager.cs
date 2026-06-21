@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour {
     public GameObject GhostPrefab;
     public PhysicsMaterial2D PlayerMat;
     public PhysicsMaterial2D GreenMat;
+    public TMP_Text Timer;
 
     private int CurrentFrame;
     private int NFrames;
@@ -69,6 +71,9 @@ public class GameManager : MonoBehaviour {
             if (pair.Key == CurrentCol) continue;
             if (pair.Value[CurrentFrame] != null) pair.Value[CurrentFrame]();
         }
+
+        // Update timer
+        Timer.SetText((MaxTime - (CurrentFrame / FPS)).ToString("F1"));
 
         ++CurrentFrame;
         if (CurrentFrame >= NFrames) CycleColor();
