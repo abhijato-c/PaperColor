@@ -11,6 +11,7 @@ public class Lever : InteractableManual
     public override void Interact()
     {
         if (state == false) {
+            PlayInteractionSFX();
             gameObject.GetComponent<SpriteRenderer>().sprite = OnSprite;
             GetObstacleFromTarget().Activate();
             state = true;
@@ -22,6 +23,7 @@ public class Lever : InteractableManual
 
     public override void Reset()
     {
+        PlayResetSFX();
         gameObject.GetComponent<SpriteRenderer>().sprite = OffSprite;
         GetObstacleFromTarget().Deactivate();
         state = false;

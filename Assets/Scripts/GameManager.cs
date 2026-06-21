@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour {
         CurrentCol = (Color) ColIndex;
         Positions[CurrentCol] = new Vector3[NFrames];
         Interactions[CurrentCol] = new Action[NFrames];
-        ResetObjects();
+        // ResetObjects();
 
         // Reset ghosts
         foreach (var pair in Ghosts) {
