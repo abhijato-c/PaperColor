@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: f6488f9a3712b0244ab7e93a9d5ee121, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9c05bb0497a57546b3871b0d1d54cab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4998494831367972963}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -148,7 +148,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4998494831367972963}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -201,6 +201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   ExtendedSprite: {fileID: 21300000, guid: d9c05bb0497a57546b3871b0d1d54cab, type: 3}
   RetractedSprite: {fileID: 21300000, guid: f6488f9a3712b0244ab7e93a9d5ee121, type: 3}
-  state: 0
+  state: 1
   extendedCollider: {fileID: 5916754481134601077}
   retractedCollider: {fileID: 1145818843468513261}

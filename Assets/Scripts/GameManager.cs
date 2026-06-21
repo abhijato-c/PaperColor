@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
         Interactions[CurrentCol] = new Action[NFrames];
         Player.transform.position = SpawnPoint.position;
         Player.GetComponent<SpriteRenderer>().color = Cols[CurrentCol];
-        Player.GetComponent<Rigidbody2D>().gravityScale = 9;
+        Player.GetComponent<Rigidbody2D>().gravityScale = 10;
 
         Updating = false;
     }
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour {
         if (CurrentCol == Color.Yellow)
             Player.GetComponent<Rigidbody2D>().gravityScale = 5;
         else if (CurrentCol == Color.Red)
-            Player.GetComponent<Rigidbody2D>().gravityScale = 9;
+            Player.GetComponent<Rigidbody2D>().gravityScale = 10;
         else
             Player.GetComponent<Rigidbody2D>().gravityScale = 7;
         Updating = false;

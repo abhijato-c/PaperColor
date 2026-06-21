@@ -6,7 +6,7 @@ using UnityEngine;
 public class Piston : MonoBehaviour, IObstacle {
     public Sprite ExtendedSprite;
     public Sprite RetractedSprite;
-    public bool state;
+    public bool state = true;
 
     [SerializeField] private BoxCollider2D extendedCollider;
     [SerializeField] private BoxCollider2D retractedCollider;
@@ -26,10 +26,5 @@ public class Piston : MonoBehaviour, IObstacle {
 
         extendedCollider.enabled = true;
         retractedCollider.enabled = false;
-    }
-
-    private void OnValidate() {
-        if (state) Activate(); 
-        else Deactivate();
     }
 }
