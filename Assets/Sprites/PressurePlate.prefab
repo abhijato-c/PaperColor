@@ -106,10 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 679085bbe9eb5f5f2b416c1c02bac7d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PressurePlate
-  Door: {fileID: 0}
-  DoorCollider: {fileID: 0}
-  DoorOpen: {fileID: 4856990145134343996, guid: 6ef32ac3be278663f924aa53f909e287, type: 3}
-  DoorClosed: {fileID: -5587899151745921581, guid: 0ba14235312105a8e878ffff82d502f4, type: 3}
+  door: {fileID: 0}
 --- !u!61 &6478274913471970596
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154,5 +151,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.1, y: 1.1}
   m_EdgeRadius: 0

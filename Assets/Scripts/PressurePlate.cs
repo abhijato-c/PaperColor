@@ -3,11 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class PressurePlate : MonoBehaviour{
-    public SpriteRenderer Door;
-    public BoxCollider2D DoorCollider;
-    public Sprite DoorOpen;
-    public Sprite DoorClosed;
-    // private bool active = false;
+    [SerializeField] public Door door;
 
     void Start() {
         
@@ -26,8 +22,7 @@ public class PressurePlate : MonoBehaviour{
     }
 
     public void Activate() {
-        Door.sprite = DoorOpen;
-        DoorCollider.enabled = false;
+        door.Open();
     }
 
     public void Reset() {
@@ -39,7 +34,6 @@ public class PressurePlate : MonoBehaviour{
             if (collider.gameObject.CompareTag("ghost")) { return; }
         }
 
-        Door.sprite = DoorClosed;
-        DoorCollider.enabled = true;
+        door.Close();
     }
 }
