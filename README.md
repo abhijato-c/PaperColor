@@ -2,7 +2,7 @@
 
 Cards Given:
 
-Spectrum, Motion, Do-Over, Cycle, Crisoy
+Spectrum, Motion, Do-Over, Cycle, Crispy
 
 ## Description
  
