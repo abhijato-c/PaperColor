@@ -112,9 +112,9 @@ public class GameManager : MonoBehaviour {
             Player.GetComponent<Rigidbody2D>().sharedMaterial = PlayerMat;
         Updating = false;
     }
+    
     /** Called from Finish */
-    public void CompleteLevel(Finish finish)
-    {
+    public void CompleteLevel(Finish finish) {
         finish.SplashColor(Cols[CurrentCol]);
 
         string NextLvl = "lv" + (int.Parse(SceneManager.GetActiveScene().name[2..]) + 1);
