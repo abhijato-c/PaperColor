@@ -9,7 +9,7 @@ public class PressurePlate : InteractableOverlap {
     public override void Interact() {
         gameObject.GetComponent<SpriteRenderer>().sprite = Compressed;
 
-        GetObstacleFromTarget().Deactivate();
+        GetObstacleFromTarget().Activate();
         print("adad");
     }
 
@@ -23,6 +23,6 @@ public class PressurePlate : InteractableOverlap {
         }
 
         gameObject.GetComponent<SpriteRenderer>().sprite = Relaxed;
-        GetObstacleFromTarget().Reset();
+        GetObstacleFromTarget().Deactivate();
     }
 }
