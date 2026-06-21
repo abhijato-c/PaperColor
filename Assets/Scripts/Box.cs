@@ -19,6 +19,4 @@ public class Box : MonoBehaviour, IObstacle
         GetComponent<BoxCollider2D>().enabled = true;
         state = false;
     }
-
-    public void Reset() { Deactivate(); }
 }

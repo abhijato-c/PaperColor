@@ -7,10 +7,6 @@ public class PlayerMovement : MonoBehaviour {
     public LayerMask GroundLayer;
     public float MoveSpeed = 5f;
     public float JumpForce = 12f;
-    public float PadForce = 16f;
-
-    public Sprite StaplerClosed;
-    public Sprite StaplerOpen;
 
     private bool LeftInput => Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed;
     private bool RightInput => Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed;
@@ -62,20 +58,19 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Jump")) {
+            JumpPad pad = other.gameObject.GetComponent<JumpPad>();
+
             rb.linearVelocityY = 0;
-            rb.AddForce(new Vector2(0, PadForce), ForceMode2D.Impulse);
-            other.gameObject.GetComponent<SpriteRenderer>().sprite = StaplerOpen;
+            rb.AddForce(new Vector2(0, pad.Force), ForceMode2D.Impulse);
+            pad.Activate();
         }
     }
 
     void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Jump")) {
-            StartCoroutine(CloseStaple(other));
+            JumpPad pad = other.gameObject.GetComponent<JumpPad>();
+            
+            StartCoroutine(pad.CloseStaple());
         }
-    }
-
-    IEnumerator CloseStaple(Collider2D other) {
-        yield return new WaitForSeconds(0.5f);
-        other.gameObject.GetComponent<SpriteRenderer>().sprite = StaplerClosed;
     }
 }

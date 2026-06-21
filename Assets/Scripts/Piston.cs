@@ -12,22 +12,21 @@ public class Piston : MonoBehaviour, IObstacle {
     [SerializeField] private BoxCollider2D retractedCollider;
 
     public void Activate() {
-        GetComponent<SpriteRenderer>().sprite = ExtendedSprite;
-        state = true;
-        print("piston act");
-
-        extendedCollider.enabled = true;
-        retractedCollider.enabled = false;
-    }
-    public void Deactivate() {
+        // activate retracts
         GetComponent<SpriteRenderer>().sprite = RetractedSprite;
         state = false;
 
         extendedCollider.enabled = false;
-        retractedCollider.enabled = true;
+        retractedCollider.enabled = true; 
     }
+    public void Deactivate() {
+        // deactivate extends
+        GetComponent<SpriteRenderer>().sprite = ExtendedSprite;
+        state = true;
 
-    public void Reset() { Activate(); }
+        extendedCollider.enabled = true;
+        retractedCollider.enabled = false;
+    }
 
     private void OnValidate() {
         if (state) Activate(); 
