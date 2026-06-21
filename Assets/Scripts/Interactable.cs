@@ -1,7 +1,7 @@
 
 public interface IInteractable
 {
-    public void Open();
-    public void Close();
+    public void Activate();
+    public void Deactivate();
     
 }
