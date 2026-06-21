@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum Color { Red, Yellow, Green, Blue }
 
@@ -105,6 +106,14 @@ public class GameManager : MonoBehaviour {
         Player.transform.position = SpawnPoint.position;
         Player.GetComponent<SpriteRenderer>().color = Cols[CurrentCol];
         Updating = false;
+    }
+    /** Called from Finish */
+    public void CompleteLevel(Finish finish)
+    {
+        finish.SplashColor(Cols[CurrentCol]);
+
+        string NextLvl = "lv" + (int.Parse(SceneManager.GetActiveScene().name[2..]) + 1);
+        SceneManager.LoadScene(NextLvl);
     }
 
     public void AddInteraction(Action func) {

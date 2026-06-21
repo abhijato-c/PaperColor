@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour {
     public Transform GroundCheck;
@@ -61,22 +60,4 @@ public class Movement : MonoBehaviour {
         currentScale.x *= -1;
         transform.localScale = currentScale;
     }
-
-    // private void OnTriggerEnter2D(Collider2D collision) {
-    //     IInteractable interactable = collision.GetComponent<IInteractable>();
-    //     if (interactable != null) {
-    //         Interactable = interactable;
-    //     }
-    //     if (collision.CompareTag("Respawn")) {
-    //         string NextLvl = "lv" + (int.Parse(SceneManager.GetActiveScene().name[2..]) + 1);
-    //         SceneManager.LoadScene(NextLvl);
-    //     }
-    // }
-
-    // private void OnTriggerExit2D(Collider2D collision) {
-    //     IInteractable interactable = collision.GetComponent<IInteractable>();
-    //     if (Interactable != null && interactable == Interactable) {
-    //         Interactable = null;
-    //     }
-    // }
 }
