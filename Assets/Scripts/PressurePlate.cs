@@ -2,14 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class PressurePlate : MonoBehaviour, IInteractable {
-    public GameObject target;
+public class PressurePlate : InteractableBase {
     public Sprite Relaxed;
     public Sprite Compressed;
-    private SpriteRenderer renderer;
 
-    void Start() {
-        renderer = gameObject.GetComponent<SpriteRenderer>();
+    public void Start()
+    {
+        Type = InteractableType.OverlapTrigger;
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
@@ -22,13 +21,13 @@ public class PressurePlate : MonoBehaviour, IInteractable {
         GameManager.Instance.AddInteraction(this.Reset);
     }
 
-    public void Interact() {
-        renderer.sprite = Compressed;
+    public override void Interact() {
+        gameObject.GetComponent<SpriteRenderer>().sprite = Compressed;
 
-        if (target.TryGetComponent<IObstacle>(out var interactable)) interactable.Activate();
+        GetObstacleFromTarget().Activate();
     }
 
-    public void Reset() {
+    public override void Reset() {
         // check if any ghosts are still on it
         List<Collider2D> overlaps = new List<Collider2D>();
         GetComponent<Collider2D>().Overlap(ContactFilter2D.noFilter, overlaps);
@@ -37,7 +36,7 @@ public class PressurePlate : MonoBehaviour, IInteractable {
             if (collider.gameObject.CompareTag("Player")) return;
         }
 
-        renderer.sprite = Relaxed;
-        if (target.TryGetComponent<IObstacle>(out var interactable)) interactable.Deactivate();
+        gameObject.GetComponent<SpriteRenderer>().sprite = Relaxed;
+        GetObstacleFromTarget().Deactivate();
     }
 }
