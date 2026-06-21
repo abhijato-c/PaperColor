@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour {
         if (CurrentFrame >= NFrames) CycleColor();
     }
 
-    void CycleColor() {
+    public void CycleColor() {
         Updating = true;
         CurrentFrame = 0;
 
