@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4182336201266210066}
   - component: {fileID: 6617632693956217387}
   - component: {fileID: 5825659159004024451}
+  - component: {fileID: 5199588277614283484}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged
@@ -108,3 +109,49 @@ MonoBehaviour:
   target: {fileID: 0}
   OnSprite: {fileID: 5746146898649137715, guid: 30d703e8268c63d149ea237a58e298b9, type: 3}
   OffSprite: {fileID: -3673377906911548673, guid: e1ae91ca691899f5b8380aeb4a33a1de, type: 3}
+--- !u!61 &5199588277614283484
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7849807155660838211}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.1, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.37, y: 0.5}
+    newSize: {x: 0.37, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.6, y: 0.89}
+  m_EdgeRadius: 0

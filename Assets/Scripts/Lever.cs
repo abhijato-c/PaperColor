@@ -1,25 +1,29 @@
 using System;
 using UnityEngine;
 
-public class Lever : InteractableBase
+public class Lever : InteractableManual
 {
     public Sprite OnSprite;
     public Sprite OffSprite;
 
-    public void Start()
-    {
-        Type = InteractableType.ManualTrigger;
-    }
+    private bool state = false;
 
     public override void Interact()
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = OnSprite;
-        GetObstacleFromTarget().Activate();
+        if (state == false) {
+            gameObject.GetComponent<SpriteRenderer>().sprite = OnSprite;
+            GetObstacleFromTarget().Activate();
+            state = true;
+        } else
+        {
+            Reset();
+        }
     }
 
     public override void Reset()
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = OffSprite;
         GetObstacleFromTarget().Deactivate();
+        state = false;
     }
 }
