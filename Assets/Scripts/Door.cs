@@ -1,7 +1,7 @@
 using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
     public Sprite OpenSprite;
     public Sprite ClosedSprite;

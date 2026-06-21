@@ -15698,6 +15698,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1112671444}
+    - target: {fileID: 2721205054499507378, guid: 95d1a2946a031a8408196f23bef04398, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1112671445}
     - target: {fileID: 7614687209281214839, guid: 95d1a2946a031a8408196f23bef04398, type: 3}
       propertyPath: m_Name
       value: PressurePlate
@@ -15781,12 +15785,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2666093972094316949, guid: ebb06815c6686ee46aae016eebabfc66, type: 3}
   m_PrefabInstance: {fileID: 1112671443}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1112671445}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a95a14bd3127b8b45b8a5a65e8b4b8ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1 &1112671445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9024034070781966929, guid: ebb06815c6686ee46aae016eebabfc66, type: 3}
+  m_PrefabInstance: {fileID: 1112671443}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1242081681
 GameObject:
   m_ObjectHideFlags: 0

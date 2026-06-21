@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class PressurePlate : MonoBehaviour{
-    public Door door;
+public class PressurePlate : MonoBehaviour {
+    public GameObject target;
     public Sprite Relaxed;
     public Sprite Compressed;
     private SpriteRenderer renderer;
@@ -24,7 +24,8 @@ public class PressurePlate : MonoBehaviour{
 
     public void Activate() {
         renderer.sprite = Compressed;
-        door.Open();
+
+        if (target.TryGetComponent<IInteractable>(out var interactable)) interactable.Open();
     }
 
     public void Reset() {
@@ -37,6 +38,6 @@ public class PressurePlate : MonoBehaviour{
         }
 
         renderer.sprite = Relaxed;
-        door.Close();
+        if (target.TryGetComponent<IInteractable>(out var interactable)) interactable.Close();
     }
 }
