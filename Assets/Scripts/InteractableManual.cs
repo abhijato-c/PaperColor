@@ -8,7 +8,6 @@ public abstract class InteractableManual : InteractableBase
         if (collision.gameObject.TryGetComponent<PlayerInteraction>(out PlayerInteraction interaction))
         {
             interaction.AddListener(this);
-            print("added listener");
         }
     }
 
@@ -17,7 +16,6 @@ public abstract class InteractableManual : InteractableBase
         if (collision.gameObject.TryGetComponent<PlayerInteraction>(out PlayerInteraction interaction))
         {
             interaction.RemoveListener(this);
-            print("removed lsitener");
         }
     }
 

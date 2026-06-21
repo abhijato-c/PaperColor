@@ -14,6 +14,7 @@ public class Piston : MonoBehaviour, IObstacle {
     public void Activate() {
         GetComponent<SpriteRenderer>().sprite = ExtendedSprite;
         state = true;
+        print("piston act");
 
         extendedCollider.enabled = true;
         retractedCollider.enabled = false;
@@ -24,8 +25,9 @@ public class Piston : MonoBehaviour, IObstacle {
 
         extendedCollider.enabled = false;
         retractedCollider.enabled = true;
-        
     }
+
+    public void Reset() { Activate(); }
 
     private void OnValidate() {
         if (state) Activate(); 
