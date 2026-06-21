@@ -3,25 +3,27 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class PressurePlate : MonoBehaviour{
-    [SerializeField] public Door door;
+    public Door door;
+    public Sprite Relaxed;
+    public Sprite Compressed;
+    private SpriteRenderer sr;
 
     void Start() {
-        
+        sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
+    public void OnTriggerEnter2D(Collider2D collision) {
         Activate();
         GameManager.Instance.AddInteraction(this.Activate);
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
-    {
+    public void OnTriggerExit2D(Collider2D collision) {
         Reset();
         GameManager.Instance.AddInteraction(this.Reset);
     }
 
     public void Activate() {
+        sr.sprite = Compressed;
         door.Open();
     }
 
@@ -30,9 +32,11 @@ public class PressurePlate : MonoBehaviour{
         List<Collider2D> overlaps = new List<Collider2D>();
         GetComponent<Collider2D>().Overlap(ContactFilter2D.noFilter, overlaps);
         foreach (Collider2D collider in overlaps) {
-            if (collider.gameObject.CompareTag("ghost")) { return; }
+            if (collider.gameObject.CompareTag("Entity")) return;
+            if (collider.gameObject.CompareTag("Player")) return;
         }
 
+        sr.sprite = Relaxed;
         door.Close();
     }
 }
