@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour {
     private bool LeftInput => Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed;
     private bool RightInput => Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed;
     private bool UpInput => Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame;
-    private bool RInput => Keyboard.current.rKey.wasPressedThisFrame;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -32,11 +31,7 @@ public class Movement : MonoBehaviour {
 
         if (RightInput) input += 1;
         if (LeftInput) input += -1;
-        if (UpInput && Grounded) Jumping = true; 
-
-        if (RInput) {
-            GameManager.Instance.CycleColor();
-        }
+        if (UpInput && Grounded) Jumping = true;
 
     }
 
