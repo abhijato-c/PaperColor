@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class PressurePlate : MonoBehaviour {
+public class PressurePlate : MonoBehaviour, IInteractable {
     public GameObject target;
     public Sprite Relaxed;
     public Sprite Compressed;
@@ -13,8 +13,8 @@ public class PressurePlate : MonoBehaviour {
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
-        Activate();
-        GameManager.Instance.AddInteraction(this.Activate);
+        Interact();
+        GameManager.Instance.AddInteraction(this.Interact);
     }
 
     public void OnTriggerExit2D(Collider2D collision) {
@@ -22,7 +22,7 @@ public class PressurePlate : MonoBehaviour {
         GameManager.Instance.AddInteraction(this.Reset);
     }
 
-    public void Activate() {
+    public void Interact() {
         renderer.sprite = Compressed;
 
         if (target.TryGetComponent<IObstacle>(out var interactable)) interactable.Activate();

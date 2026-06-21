@@ -128,10 +128,15 @@ public class GameManager : MonoBehaviour {
     void ResetObjects() {
         MonoBehaviour[] allScripts = UnityEngine.Object.FindObjectsByType<MonoBehaviour>();
         foreach (MonoBehaviour script in allScripts) {
-            MethodInfo rst = script.GetType().GetMethod("Reset");
-            if (rst != null) {
-                rst.Invoke(script, null);
+            
+            if (script != null && script is IInteractable interactable)
+            {
+                interactable.Reset();
             }
+
         }
+
     }
+
+
 }
