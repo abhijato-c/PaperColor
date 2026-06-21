@@ -133,8 +133,8 @@ public class GameManager : MonoBehaviour {
     void ResetObjects() {
         MonoBehaviour[] allScripts = UnityEngine.Object.FindObjectsByType<MonoBehaviour>();
         foreach (MonoBehaviour script in allScripts) {
-            
-            if (script != null && script is IInteractable interactable)
+
+            if (script != null && script is InteractableBase interactable)
             {
                 interactable.Reset();
             }

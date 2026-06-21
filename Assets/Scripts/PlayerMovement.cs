@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
     public Transform GroundCheck;
     public LayerMask GroundLayer;
     public float MoveSpeed = 5f;

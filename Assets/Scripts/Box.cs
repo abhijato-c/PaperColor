@@ -2,7 +2,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class Door : MonoBehaviour, IObstacle
+public class Box : MonoBehaviour, IObstacle
 {
     public Sprite OpenSprite;
     public Sprite ClosedSprite;
