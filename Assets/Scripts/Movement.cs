@@ -9,8 +9,6 @@ public class Movement : MonoBehaviour {
     public float MoveSpeed = 5f;
     public float JumpForce = 12f;
 
-    private IInteractable Interactable; 
-    // private bool InteractInput => Keyboard.current.eKey.wasPressedThisFrame;
     private bool LeftInput => Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed;
     private bool RightInput => Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed;
     private bool UpInput => Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame;
@@ -36,10 +34,6 @@ public class Movement : MonoBehaviour {
         if (LeftInput) input += -1;
         if (UpInput && Grounded) Jumping = true; 
 
-        // if (InteractInput && Interactable != null) {
-        //     GameManager.Instance.AddInteraction(Interactable.Interact);
-        //     Interactable.Interact();
-        // }
     }
 
     void FixedUpdate() {
@@ -63,21 +57,21 @@ public class Movement : MonoBehaviour {
         transform.localScale = currentScale;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        IInteractable interactable = collision.GetComponent<IInteractable>();
-        if (interactable != null) {
-            Interactable = interactable;
-        }
-        if (collision.CompareTag("Respawn")) {
-            string NextLvl = "lv" + (int.Parse(SceneManager.GetActiveScene().name[2..]) + 1);
-            SceneManager.LoadScene(NextLvl);
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D collision) {
+    //     IInteractable interactable = collision.GetComponent<IInteractable>();
+    //     if (interactable != null) {
+    //         Interactable = interactable;
+    //     }
+    //     if (collision.CompareTag("Respawn")) {
+    //         string NextLvl = "lv" + (int.Parse(SceneManager.GetActiveScene().name[2..]) + 1);
+    //         SceneManager.LoadScene(NextLvl);
+    //     }
+    // }
 
-    private void OnTriggerExit2D(Collider2D collision) {
-        IInteractable interactable = collision.GetComponent<IInteractable>();
-        if (Interactable != null && interactable == Interactable) {
-            Interactable = null;
-        }
-    }
+    // private void OnTriggerExit2D(Collider2D collision) {
+    //     IInteractable interactable = collision.GetComponent<IInteractable>();
+    //     if (Interactable != null && interactable == Interactable) {
+    //         Interactable = null;
+    //     }
+    // }
 }
