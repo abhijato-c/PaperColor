@@ -5,12 +5,20 @@ using UnityEngine;
 public class PressurePlate : InteractableOverlap {
     public Sprite Relaxed;
     public Sprite Compressed;
+    public AudioSource pressedAudio;
+    public AudioSource releasedAudio;
+
+    public void Start()
+    {
+    }
 
     public override void Interact() {
         gameObject.GetComponent<SpriteRenderer>().sprite = Compressed;
 
         GetObstacleFromTarget().Activate();
-        print("adad");
+
+        pressedAudio.time = 0.0f;
+        pressedAudio.Play();
     }
 
     public override void Reset() {
@@ -24,5 +32,8 @@ public class PressurePlate : InteractableOverlap {
 
         gameObject.GetComponent<SpriteRenderer>().sprite = Relaxed;
         GetObstacleFromTarget().Deactivate();
+
+        releasedAudio.time = releasedAudio.clip.length - 0.01f;
+        releasedAudio.Play();
     }
 }
